@@ -21,9 +21,19 @@ class Order
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
+     */
+    private $user;
+
+    /**
      * @ORM\ManyToMany(targetEntity=Dishes::class, inversedBy="orders")
      */
     private $dish;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date;
 
     public function __construct()
     {
@@ -33,6 +43,18 @@ class Order
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
     /**
@@ -55,6 +77,18 @@ class Order
     public function removeDish(Dishes $dish): self
     {
         $this->dish->removeElement($dish);
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

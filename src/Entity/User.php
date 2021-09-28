@@ -6,11 +6,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -42,24 +44,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $reviews;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user")
      */
-    private $lastname;
+    private $orders;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $registration_date;
 
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -181,38 +176,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFirstname(): ?string
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
     {
-        return $this->firstname;
+        return $this->orders;
     }
 
-    public function setFirstname(string $firstname): self
+    public function addOrder(Order $order): self
     {
-        $this->firstname = $firstname;
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setUser($this);
+        }
 
         return $this;
     }
 
-    public function getLastname(): ?string
+    public function removeOrder(Order $order): self
     {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    public function getRegistrationDate(): ?\DateTimeInterface
-    {
-        return $this->registration_date;
-    }
-
-    public function setRegistrationDate(\DateTimeInterface $registration_date): self
-    {
-        $this->registration_date = $registration_date;
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
 
         return $this;
     }
