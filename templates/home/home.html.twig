@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Accueil{% endblock %}
+        {%  block style%}
+        <link rel="stylesheet" href="{{asset('asset/css/navbar-footer-home.css')}}">
+        {% endblock %}
         {% block stylesheets %}
         <link rel="stylesheet" href="{{asset('asset/css/home.css')}}">
         {% endblock %}
@@ -10,27 +13,16 @@
 
 {% block body %}
 
+<section class="banner">
+  <div class="banner-content">
+    <h1>Bienvenue à La Fourchette Victorieuse</h1>
+    <a class="btn mt-3 btn-hero" href="#">Nous découvrir</a>
+  </div>
+</section>
+
+
 <section id="home">
-    <!-- <div class="slider-container">
-        <div class="home-slideshow">
-            <img
-              class="home-slideshow-image"
-              src="{{asset('asset/image/cooking-m.jpg')}}"
-              alt="employees"
-            />
-            <img
-              class="home-slideshow-image"
-              src="{{asset('asset/image/cooking-pot-m.jpg')}}"
-              alt="cooking pot"
-            />
-            <img
-              class="home-slideshow-image"
-              src="{{asset('asset/image/pizza-m.jpg')}}"
-              alt="slice of pizza"
-            />
-          </div>
-    </div> -->
-    <div class="c-wrapper">
+    <!-- <div class="c-wrapper">
 
         <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -53,7 +45,7 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-    </div>
+    </div> -->
 
     <div id="home-explanation">
         <h2 class="text-center">Comment ça marche</h2>
