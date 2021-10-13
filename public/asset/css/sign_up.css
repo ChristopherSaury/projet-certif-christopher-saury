@@ -2,7 +2,7 @@
     background-color: #fff;
     padding: 12% 0;
   }
-  #signUp form {
+  #signUp .form {
     color: #fff;
     background: #8f6f5c;
     padding: 5%;
@@ -25,14 +25,14 @@
     text-align: center;
   }
   
-  #signUp form input[type="email"],
+  /* #signUp form input[type="email"],
   #signUp form input[type="password"] {
     padding: 16px;
     margin-bottom: 32px;
     border-radius: 4px;
-  }
+  } */
   
-  .btn-form-wrapper input {
+  .btn-form-wrapper button {
    width: 100%;
    height: auto;
   }

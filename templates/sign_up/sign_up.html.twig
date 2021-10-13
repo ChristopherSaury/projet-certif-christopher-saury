@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row">
         <div class="form-wrap col-lg">
-          <!-- <a href="#">Logo</a> -->
+           <a href="#">Logo</a> 
           <form method="post" action="">
             <h2 class="text-center">Inscription</h2>
             <div class="form-group">
@@ -64,7 +64,7 @@
                 placeholder="Saisissez votre mot de passe"
               />
             </div>
-            <!-- <div class="form-group">
+            <div class="form-group">
               <label for="confirm-password">Confirmer mot de passe</label>
               <input
                 type="password"
@@ -72,7 +72,7 @@
                 id="confirm-password"
                 placeholder="Confirmer le mot de passe"
               />
-            </div> -->
+            </div>
             <div class="d-flex justify-content-center btn-form-wrapper">
               <input
                 class="btn"
@@ -91,4 +91,54 @@
       </div>
     </div>
   </section>
+  <h2 class="mt-5">Inscription</h2>
+  {{form(userForm)}}
 {% endblock %}
+
+
+<section id="signUp">
+  <div class="container">
+    <div class="row">
+      <div class="form-wrap col-lg">
+          <form>
+             <h2 class="text-center">Inscription</h2>
+             {{ form_start(registrationForm) }}
+                 {{ form_row(registrationForm.email) }}
+                 {{ form_row(registrationForm.plainPassword, {
+                     label: 'Password'
+                 }) }}
+                 {{ form_row(registrationForm.agreeTerms) }}
+                 <div class="d-flex justify-content-center btn-form-wrapper">
+                  <!-- <input class="btn" type="submit" value="Continuer" style="background: #eef66c"/> -->
+                  <button type="submit" class="btn" style="background: #eef66c">Continuer</button>
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                  <small><a style="color: #fff; font-size: 15px;" href="">Identifiez-vous</a></small>
+              </div>
+             {{ form_end(registrationForm) }}
+         </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<h1>Register</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg mt-5">
+            <h1>Inscription</h1>
+            <form>
+
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Password'
+                    }) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+            
+                    <button type="submit" class="btn btn-primary">Register</button>
+                {{ form_end(registrationForm) }}
+            </form>
+        </div>
+    </div>
+</div>
