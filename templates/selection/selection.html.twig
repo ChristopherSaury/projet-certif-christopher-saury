@@ -82,16 +82,30 @@
           <div class="container">
             <div class="row">
             {% for dish in dishes %}
-              <div class="card col-lg-3">
+              <!-- <div class="card col-lg-3">
                 <img
                   class="card-img-top"
                   src="{{ dish.url }}"
                   alt="Card image cap"
                 />
-                  <div class="card-body">
+                  <div class="card-body image__overlay">
                     <h4 class="text-center">{{ dish.name }}</h4>
                     <div class="dish-options">
                     </div>
+                </div>
+              </div> -->
+              <div class="col-lg-4">
+                <div class="dish-card mt-5">
+                  <div class="dish-img">
+                    <img src="{{ dish.url }}" alt="{{ dish.name }}">
+                  </div>
+                  <div class="dish-content">
+                    <div class="dish-info">
+                      <h3>{{ dish.name }}</h3>
+                      <p>3,40£</p>
+                    </div>
+                    <p class="dish-text">{{ dish.description }}</p>
+                  </div>
                 </div>
               </div>
               {% endfor %}
